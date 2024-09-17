@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My portifolio website</title>
+        <link rel="icon" type="image/x-icon" href="images.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!-- Navigation -->
+        <nav class="w3-bar w3-black">
+        <a href="index.html" class="w3-button w3-bar-item">Home</a>
+        <a href="aboutme.html" class="w3-button w3-bar-item">About me</a>
+        <a href="school.html" class="w3-button w3-bar-item">School</a>
+        <a href="contact.html" class="w3-button w3-bar-item">Contact</a>
+        </nav>
+
+    <body>
+        
+        <p><h1 class="text-color"></h1></p>
+
+        <div class="white-box">
+            <p> </p>
+        </div>
+
+        <!-- Slide Show -->
+    <div style="text-align: center;">
+        <section>
+        <center>
+        <img class="mySlides" src="hi.jpg" width="800" height="600">
+        <img class="mySlides" src="haha.jpg" width="800" height="600">
+        <img class="mySlides" src="168364.jpg" width="800" height="600">
+    </center>
+        </section>
+    </div>
+        
+        <script>
+            // Automatic Slideshow - change image every 3 seconds
+            var myIndex = 0;
+            carousel();
+    
+            function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}
+            x[myIndex-1].style.display = "block";
+            setTimeout(carousel, 3000);
+            }
+        </script>
+
+    <center>
+    <button id="everybodydance"><sYpan>BOOM</sYpan></button>
+    </center>
+
+    <script>
+        var contextClass = (window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.oAudioContext || window.msAudioContext);
+var dance = document.getElementById("everybodydance");
+if (contextClass) {
+  var context = new contextClass();
+} else {
+  onError;
+}
+var request = new XMLHttpRequest();
+request.open('GET', "https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/gonna-make-you-sweat.mp3", true);
+request.responseType = 'arraybuffer';
+request.onload = function() {
+ context.decodeAudioData(request.response, function(theBuffer) {
+  buffer = theBuffer;
+  }, onError);
+}
+request.send();
+
+function onError() { console.log("Bad browser! No Web Audio API for you"); }
+
+function unpress() { dance.classList.remove("pressed"); }
+
+function playSound() {
+ dance.classList.add("pressed");
+  var source = context.createBufferSource();
+  source.buffer = buffer;
+ source.connect(context.destination);
+  source.start(0);
+  var delay = 2000;
+  setTimeout(unpress,delay);
+}
+dance.addEventListener('click', function(event) { playSound(); });
+    </script>
+
+    </body>
+
+    <footer>
+
+
+    </footer>
+
+
+
+</html>
+
